@@ -13,7 +13,7 @@
 // limitations under the License.
 //
 
-namespace Microsoft.Azure.Commands.Network.Cortex.HubBgpConnection
+namespace Microsoft.Azure.Commands.Network
 {
     using Microsoft.Azure.Commands.Network.Models;
     using Microsoft.Azure.Commands.ResourceManager.Common.ArgumentCompleters;
@@ -143,7 +143,7 @@ namespace Microsoft.Azure.Commands.Network.Cortex.HubBgpConnection
                 Name = this.Name,
                 PeerAsn = this.PeerAsn,
                 PeerIp = this.PeerIp,
-                // TODO: hubVnetConnection
+                HubVirtualNetworkConnection = hubVnetConnection
             };
 
             this.ConfirmAction(

@@ -13,7 +13,7 @@
 // limitations under the License.
 //
 
-namespace Microsoft.Azure.Commands.Network.Cortex.HubBgpConnection
+namespace Microsoft.Azure.Commands.Network
 {
     using System;
     using System.Linq;
@@ -22,7 +22,6 @@ namespace Microsoft.Azure.Commands.Network.Cortex.HubBgpConnection
     using Microsoft.Azure.Commands.Network.Models;
     using Microsoft.Azure.Commands.ResourceManager.Common.ArgumentCompleters;
     using Microsoft.Azure.Management.Internal.Resources.Utilities.Models;
-    using Microsoft.Azure.Management.Network;
     using MNM = Microsoft.Azure.Management.Network.Models;
 
     public class UpdateAzVirtualHubBgpConnectionCommand : HubBgpConnectionBaseCmdlet
@@ -228,7 +227,7 @@ namespace Microsoft.Azure.Commands.Network.Cortex.HubBgpConnection
                 Name = this.Name,
                 PeerAsn = this.PeerAsn,
                 PeerIp = this.PeerIp,
-                // TODO: hubVnetConnection
+                HubVirtualNetworkConnection = hubVnetConnection
             };
 
             this.ConfirmAction(

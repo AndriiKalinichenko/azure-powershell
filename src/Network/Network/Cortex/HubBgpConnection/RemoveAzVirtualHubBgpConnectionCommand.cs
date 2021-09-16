@@ -13,7 +13,7 @@
 // limitations under the License.
 //
 
-namespace Microsoft.Azure.Commands.Network.Cortex.HubBgpConnection
+namespace Microsoft.Azure.Commands.Network
 {
     using Microsoft.Azure.Commands.Network.Models;
     using Microsoft.Azure.Commands.ResourceManager.Common.ArgumentCompleters;
@@ -24,6 +24,11 @@ namespace Microsoft.Azure.Commands.Network.Cortex.HubBgpConnection
     using System.Linq;
     using System.Management.Automation;
 
+    [Cmdlet(VerbsCommon.Remove,
+        ResourceManager.Common.AzureRMConstants.AzurePrefix + "VirtualHubBgpConnection",
+        DefaultParameterSetName = CortexParameterSetNames.ByVirtualHubName,
+        SupportsShouldProcess = true),
+        OutputType(typeof(bool))]
     public class RemoveAzVirtualHubBgpConnectionCommand : HubBgpConnectionBaseCmdlet
     {
         [Parameter(Mandatory = true,

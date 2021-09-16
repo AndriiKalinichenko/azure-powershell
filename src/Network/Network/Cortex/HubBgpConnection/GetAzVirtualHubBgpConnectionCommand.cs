@@ -13,12 +13,11 @@
 // limitations under the License.
 //
 
-namespace Microsoft.Azure.Commands.Network.Cortex.HubBgpConnection
+namespace Microsoft.Azure.Commands.Network
 {
     using Microsoft.Azure.Commands.Network.Models;
     using Microsoft.Azure.Commands.ResourceManager.Common.ArgumentCompleters;
     using Microsoft.Azure.Management.Internal.Resources.Utilities.Models;
-    using Microsoft.Azure.Management.Network;
     using Microsoft.Azure.Management.Network.Models;
 
     using System;
