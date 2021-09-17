@@ -67,7 +67,7 @@ function Test-VirtualHubBgpConnectionCRUD
         Assert-AreEqual $bgpConnection.Name $hubBgpConnectionName
         Assert-AreEqual $bgpConnection.PeerIp "192.168.1.5"
         Assert-AreEqual $bgpConnection.PeerAsn "20000"
-        Assert-AreEqual $bgpConnection.VirtualHubVnetConnection.Id $$hubVnetConnection.Id
+        Assert-AreEqual $bgpConnection.HubVirtualNetworkConnection.Id $hubVnetConnection.Id
 
         # Delete HubBgpConnection
         Remove-AzVirtualHubBgpConnection -ResourceGroupName $rgName -VirtualHubName $virtualHubName -Name $hubBgpConnectionName -Force
@@ -83,7 +83,8 @@ function Test-VirtualHubBgpConnectionCRUD
 
         # Delete Virtual Hub
         Remove-AzVirtualHub -ResourceGroupName $rgName -Name $virtualHubName -Force
-        Assert-ThrowsLike { Get-AzVirtualHub -ResourceGroupName $rgName -Name $virtualHubName } "*Not*Found*"
+        $virtualHub = Get-AzVirtualHub -ResourceGroupName $rgName -Name $virtualHubName
+        Assert-AreEqual $virtualHub.Count 0
 
         # Delete Virtual Wan
         Remove-AzVirtualWan -ResourceGroupName $rgName -Name $virtualWanName -Force

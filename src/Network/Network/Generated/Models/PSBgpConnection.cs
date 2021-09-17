@@ -26,8 +26,8 @@ namespace Microsoft.Azure.Commands.Network.Models
         [Ps1Xml(Target = ViewControl.Table)]
         public string PeerIp { get; set; }
 
-        [Ps1Xml(Label = "VirtualHubVnetConnection id", Target = ViewControl.Table, ScriptBlock = "$_.VirtualHubVnetConnection.Id")]
-        public PSResourceId VirtualHubVnetConnection { get; set; } // TODO: this is called different in MNM. Need to fix this, it's not populated in Get currently
+        [Ps1Xml(Label = "HubVirtualNetworkConnection id", Target = ViewControl.Table, ScriptBlock = "$_.HubVirtualNetworkConnection.Id")]
+        public PSResourceId HubVirtualNetworkConnection { get; set; }
 
         [Ps1Xml(Target = ViewControl.Table)]
         public string ProvisioningState { get; set; }

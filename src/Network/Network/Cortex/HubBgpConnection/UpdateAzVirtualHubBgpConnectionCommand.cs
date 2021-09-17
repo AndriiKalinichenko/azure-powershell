@@ -275,7 +275,7 @@ namespace Microsoft.Azure.Commands.Network
             }
             else if (ParameterSetName.Contains(CortexParameterSetNames.ByHubBgpConnectionObject))
             {
-                hubVnetConnection = new MNM.SubResource(this.InputObject.VirtualHubVnetConnection.Id);
+                hubVnetConnection = new MNM.SubResource(this.InputObject.HubVirtualNetworkConnection.Id);
             }
 
             return hubVnetConnection;

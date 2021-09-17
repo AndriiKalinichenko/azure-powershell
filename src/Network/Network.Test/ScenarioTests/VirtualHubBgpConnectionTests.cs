@@ -12,18 +12,17 @@
 // limitations under the License.
 // ----------------------------------------------------------------------------------
 
-using Commands.Network.Test;
-
+using Microsoft.Azure.Commands.Network.Test.ScenarioTests;
 using Microsoft.WindowsAzure.Commands.ScenarioTest;
 
 using Xunit;
 using Xunit.Abstractions;
 
-namespace Microsoft.Azure.Commands.Network.Test.ScenarioTests
+namespace Commands.Network.Test.ScenarioTests
 {
     public class VirtualHubBgpConnectionTests : NetworkTestRunner
     {
-        protected VirtualHubBgpConnectionTests(ITestOutputHelper output) : base(output)
+        public VirtualHubBgpConnectionTests(ITestOutputHelper output) : base(output)
         {
         }
 
