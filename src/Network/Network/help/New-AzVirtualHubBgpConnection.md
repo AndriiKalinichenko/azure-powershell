@@ -66,7 +66,6 @@ The New-AzVirtualHubBgpConnection cmdlet creates a HubBgpConnection resource tha
 ## EXAMPLES
 
 ### Example 1
-
 ```powershell
 PS C:\> New-AzResourceGroup -Location "West US" -Name "testRG"
 PS C:\> $frontendSubnet = New-AzVirtualNetworkSubnetConfig -Name frontendSubnet -AddressPrefix "192.168.1.0/24"
@@ -87,11 +86,9 @@ PeerIp                      : 192.168.1.5
 The above will create a resource group, Virtual WAN, Virtual Network, Virtual Hub in West US and connect the Virtual Network to the Virtual Hub in that resource group in Azure. A Virtual Hub BGP Connection will be created thereafter which will peer the Virtual Hub with the network appliance deployed in the Virtual Network.
 
 ### Example 2
-
-```
-PS C:\> $virtualHub = Get-AzVirtualHub -ResourceGroupName "testRG" -Name "testHub"
+```powershell
 PS C:\> $hubVnetConnection = Get-AzVirtualHubVnetConnection -ResourceGroupName "testRG" -VirtualHubName "testHub" -Name "testVnetConnection"
-PS C:\> $virtualHub | New-AzVirtualHubBgpConnection -PeerIp 192.168.1.5 -PeerAsn 20000 -Name "testBgpConnection" -VirtualHubVnetConnection $hubVnetConnection
+PS C:\> Get-AzVirtualHub -ResourceGroupName "testRG" -Name "testHub" | New-AzVirtualHubBgpConnection -PeerIp 192.168.1.5 -PeerAsn 20000 -Name "testBgpConnection" -VirtualHubVnetConnection $hubVnetConnection
 
 Name                        : testBgpConnection
 Id                          : /subscriptions/{subscriptionId}/resourceGroups/testRG/providers/Microsoft.Network/virtualHubs/testHub/bgpConnections/testBgpConnection
@@ -100,7 +97,7 @@ PeerAsn                     : 20000
 PeerIp                      : 192.168.1.5
 ```
 
-The above will create Virtual Hub BGP Connection for existing Virtual Hub and Virtual Hub Vnet Connection by passing Virtual Hub via pipe.
+The above will create Virtual Hub BGP Connection for existing Virtual Hub and Virtual Hub Vnet Connection using powershell piping on the output from Get-AzVirtualHub.
 
 ## PARAMETERS
 

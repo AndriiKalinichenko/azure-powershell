@@ -8,7 +8,7 @@ schema: 2.0.0
 # Get-AzVirtualHubBgpConnection
 
 ## SYNOPSIS
-{{ Fill in the Synopsis }}
+The Get-AzVirtualHubBgpConnection cmdlet gets a Virtual Hub BGP Connection in a Virtual Hub or lists all Virtual Hub BGP Connections in a Virtual Hub.
 
 ## SYNTAX
 
@@ -31,16 +31,54 @@ Get-AzVirtualHubBgpConnection -ResourceId <String> [-DefaultProfile <IAzureConte
 ```
 
 ## DESCRIPTION
-{{ Fill in the Description }}
+The Get-AzVirtualHubBgpConnection cmdlet gets a Virtual Hub BGP Connection in a Virtual Hub or lists all Virtual Hub BGP Connections in a Virtual Hub.
 
 ## EXAMPLES
 
 ### Example 1
+
 ```powershell
-PS C:\> {{ Add example code here }}
+PS C:\> New-AzResourceGroup -Location "West US" -Name "testRG"
+PS C:\> $frontendSubnet = New-AzVirtualNetworkSubnetConfig -Name frontendSubnet -AddressPrefix "192.168.1.0/24"
+PS C:\> $backendSubnet  = New-AzVirtualNetworkSubnetConfig -Name backendSubnet  -AddressPrefix "192.168.2.0/24"
+PS C:\> $remoteVirtualNetwork = New-AzVirtualNetwork -Name "testVirtualNetwork" -ResourceGroupName "testRG" -Location "West US" -AddressPrefix "192.168.0.0/16" -Subnet $frontendSubnet,$backendSubnet
+PS C:\> $virtualWan = New-AzVirtualWan -ResourceGroupName "testRG" -Name "testWan" -Location "West US"
+PS C:\> New-AzVirtualHub -VirtualWan $virtualWan -ResourceGroupName "testRG" -Name "testHub" -AddressPrefix "10.0.1.0/24"
+PS C:\> $hubVnetConnection = New-AzVirtualHubVnetConnection -ResourceGroupName "testRG" -VirtualHubName "testHub" -Name "testVnetConnection" -RemoteVirtualNetwork $remoteVirtualNetwork
+PS C:\> New-AzVirtualHubBgpConnection -ResourceGroupName "testRG" -VirtualHubName "testHub" -PeerIp 192.168.1.5 -PeerAsn 20000 -Name "testBgpConnection" -VirtualHubVnetConnection $hubVnetConnection
+
+PS C:\> Get-AzVirtualHubBgpConnection -ResourceGroupName "testRG" -VirtualHubName "testHub" -Name "testBgpConnection"
+
+Name                        : testBgpConnection
+Id                          : /subscriptions/{subscriptionId}/resourceGroups/testRG/providers/Microsoft.Network/virtualHubs/testHub/bgpConnections/testBgpConnection
+HubVirtualNetworkConnection : /subscriptions/{subscriptionId}/resourceGroups/testRG/providers/Microsoft.Network/virtualHubs/testHub/hubVirtualNetworkConnections/testVnetConnection
+PeerAsn                     : 20000
+PeerIp                      : 192.168.1.5
 ```
 
-{{ Add example description here }}
+The above will create a resource group, Virtual WAN, Virtual Network, Virtual Hub in West US and connect the Virtual Network to the Virtual Hub in that resource group in Azure. A Virtual Hub BGP Connection will be created thereafter which will peer the Virtual Hub with the network appliance deployed in the Virtual Network.
+
+After the Virtual Hub BGP Connection is created, it gets the BGP Connection using its resource group name, the Virtual Hub name and the BGP Connection name.
+
+### Example 2
+
+```powershell
+PS C:\> Get-AzVirtualHubBgpConnection -ResourceGroupName "testRG" -VirtualHubName "testHub" -Name test*
+
+Name                        : testBgpConnection1
+Id                          : /subscriptions/{subscriptionId}/resourceGroups/testRG/providers/Microsoft.Network/virtualHubs/testHub/bgpConnections/testBgpConnection1
+HubVirtualNetworkConnection : /subscriptions/{subscriptionId}/resourceGroups/testRG/providers/Microsoft.Network/virtualHubs/testHub/hubVirtualNetworkConnections/testVnetConnection
+PeerAsn                     : 20000
+PeerIp                      : 192.168.1.5
+
+Name                        : testBgpConnection2
+Id                          : /subscriptions/{subscriptionId}/resourceGroups/testRG/providers/Microsoft.Network/virtualHubs/testHub/bgpConnections/testBgpConnection2
+HubVirtualNetworkConnection : /subscriptions/{subscriptionId}/resourceGroups/testRG/providers/Microsoft.Network/virtualHubs/testHub/hubVirtualNetworkConnections/testVnetConnection
+PeerAsn                     : 20000
+PeerIp                      : 192.168.1.6
+```
+
+This cmdlet lists all the Virtual Hub BGP Connections starting with "test" using its resource group name and the Virtual Hub name.
 
 ## PARAMETERS
 
@@ -108,7 +146,7 @@ Accept wildcard characters: False
 The virtual hub resource.
 
 ```yaml
-Type: PSVirtualHub
+Type: Microsoft.Azure.Commands.Network.Models.PSVirtualHub
 Parameter Sets: ByVirtualHubObject
 Aliases: ParentObject, ParentVirtualHub
 
@@ -141,6 +179,8 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 ### Microsoft.Azure.Commands.Network.Models.PSVirtualHub
 
+### System.String
+
 ## OUTPUTS
 
 ### Microsoft.Azure.Commands.Network.Models.PSBgpConnection
@@ -148,3 +188,9 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 ## NOTES
 
 ## RELATED LINKS
+
+[New-AzVirtualHubBgpConnection](./Get-AzVirtualHubBgpConnection.md)
+
+[Remove-AzVirtualHubBgpConnection](./Remove-AzVirtualHubBgpConnection.md)
+
+[Update-AzVirtualHubBgpConnection](./Update-AzVirtualHubBgpConnection.md)

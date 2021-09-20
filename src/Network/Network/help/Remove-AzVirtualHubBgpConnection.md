@@ -8,7 +8,7 @@ schema: 2.0.0
 # Remove-AzVirtualHubBgpConnection
 
 ## SYNOPSIS
-{{ Fill in the Synopsis }}
+The Remove-AzVirtualHubBgpConnection cmdlet removes a HubBgpConnection resource that peers Azure Virtual Hub Router with a BGP-enabled peer in virtual network connected to the Virtual Hub.
 
 ## SYNTAX
 
@@ -37,16 +37,31 @@ Remove-AzVirtualHubBgpConnection -ResourceId <String> [-AsJob] [-Force] [-PassTh
 ```
 
 ## DESCRIPTION
-{{ Fill in the Description }}
+The Remove-AzVirtualHubBgpConnection cmdlet removes a HubBgpConnection resource that peers Azure Virtual Hub Router with a BGP-enabled peer in virtual network connected to the Virtual Hub.
 
 ## EXAMPLES
 
 ### Example 1
 ```powershell
-PS C:\> {{ Add example code here }}
+PS C:\> Remove-AzVirtualHubBgpConnection -ResourceGroupName "testRG" -VirtualHubName "testHub" -Name "testBgpConnection"
 ```
 
-{{ Add example description here }}
+The above will remove Virtual Hub BGP Connection using its resource group name, the Virtual Hub name and the Connection name.
+
+### Example 2
+```powershell
+PS C:\> Get-AzVirtualHubBgpConnection -ResourceGroupName "testRG" -VirtualHubName "testHub" -Name "testBgpConnection" | Remove-AzVirtualHubBgpConnection
+```
+
+The above will remove Virtual Hub BGP Connection using powershell piping on the output from Get-AzVirtualHubBgpConnection.
+
+### Example 3
+```powershell
+PS C:\> $bgpConnectionId = "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroup}/providers/Microsoft.Network/virtualHubs/{virtualHubName}/bgpConnections/{bgpConnectionName}"
+PS C:\> Remove-AzVirtualHubBgpConnection -ResourceId $bgpConnectionId
+```
+
+The above will remove Virtual Hub BGP Connection using the BGP Connection resource id.
 
 ## PARAMETERS
 
@@ -189,7 +204,7 @@ Accept wildcard characters: False
 The virtual hub resource.
 
 ```yaml
-Type: PSVirtualHub
+Type: Microsoft.Azure.Commands.Network.Models.PSVirtualHub
 Parameter Sets: ByVirtualHubObject
 Aliases: ParentObject, ParentVirtualHub
 
@@ -240,6 +255,8 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 ### Microsoft.Azure.Commands.Network.Models.PSBgpConnection
 
+### System.String
+
 ## OUTPUTS
 
 ### System.Boolean
@@ -247,3 +264,9 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 ## NOTES
 
 ## RELATED LINKS
+
+[Get-AzVirtualHubBgpConnection](./Get-AzVirtualHubBgpConnection.md)
+
+[New-AzVirtualHubBgpConnection](./Remove-AzVirtualHubBgpConnection.md)
+
+[Update-AzVirtualHubBgpConnection](./Update-AzVirtualHubBgpConnection.md)
