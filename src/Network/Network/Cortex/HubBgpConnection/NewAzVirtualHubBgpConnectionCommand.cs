@@ -85,9 +85,11 @@ namespace Microsoft.Azure.Commands.Network
 
         [Alias("ParentObject", "ParentVirtualHub")]
         [Parameter(Mandatory = true,
+            ValueFromPipeline = true,
             HelpMessage = "The virtual hub resource.",
             ParameterSetName = CortexParameterSetNames.ByVirtualHubObject + CortexParameterSetNames.ByHubVirtualNetworkConnectionObject)]
         [Parameter(Mandatory = true,
+            ValueFromPipeline = true,
             HelpMessage = "The virtual hub resource.",
             ParameterSetName = CortexParameterSetNames.ByVirtualHubObject + CortexParameterSetNames.ByHubVirtualNetworkConnectionResourceId)]
         public PSVirtualHub VirtualHub { get; set; }

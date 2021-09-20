@@ -24,6 +24,11 @@ namespace Microsoft.Azure.Commands.Network
     using Microsoft.Azure.Management.Internal.Resources.Utilities.Models;
     using MNM = Microsoft.Azure.Management.Network.Models;
 
+    [Cmdlet("Update",
+        ResourceManager.Common.AzureRMConstants.AzurePrefix + "VirtualHubBgpConnection",
+        DefaultParameterSetName = CortexParameterSetNames.ByVirtualHubName,
+        SupportsShouldProcess = true),
+        OutputType(typeof(PSBgpConnection))]
     public class UpdateAzVirtualHubBgpConnectionCommand : HubBgpConnectionBaseCmdlet
     {
         [Parameter(Mandatory = true,
